@@ -10,26 +10,17 @@ public class BankAccount {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 
     public double getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
     public double getMinBalance() {
         return minBalance;
     }
-
-    public void setMinBalance(double minBalance) {
-        this.minBalance = minBalance;
-    }
-
 
     public BankAccount(String name, double balance, double minBalance) {
         this.name = name;
@@ -68,7 +59,7 @@ public class BankAccount {
         // Remember to throw "Insufficient Balance" exception, if the remaining amount would be less than minimum balance
         double remBalance = balance - amount;
         try {
-            if(remBalance < this.minBalance){
+            if(remBalance < minBalance){
                 throw new InsufficientBalanceException("Insufficient Balance");
             }
         }
