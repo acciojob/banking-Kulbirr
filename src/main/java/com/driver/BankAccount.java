@@ -30,10 +30,6 @@ public class BankAccount {
         this.minBalance = minBalance;
     }
 
-    public BankAccount(String name, double balance) {
-        this.name = name;
-        this.balance = balance;
-    }
 
     public BankAccount(String name, double balance, double minBalance) {
         this.name = name;

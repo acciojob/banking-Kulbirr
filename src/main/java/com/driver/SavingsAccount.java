@@ -4,29 +4,24 @@ public class SavingsAccount extends BankAccount{
     double rate;
     double maxWithdrawalLimit;
 
-    public double getRate() {
-        return rate;
+
+    public SavingsAccount(String name, double balance, double maxWithdrawalLimit, double rate) {
+        // minimum balance is 0 by default
+        super(name, balance, 0.0);
+        this.maxWithdrawalLimit = maxWithdrawalLimit;
+        this.rate = rate;
+
     }
 
-    public void setRate(double rate) {
-        this.rate = rate;
+    public double getRate() {
+        return rate;
     }
 
     public double getMaxWithdrawalLimit() {
         return maxWithdrawalLimit;
     }
 
-    public void setMaxWithdrawalLimit(double maxWithdrawalLimit) {
-        this.maxWithdrawalLimit = maxWithdrawalLimit;
-    }
 
-    public SavingsAccount(String name, double balance, double maxWithdrawalLimit, double rate) {
-        // minimum balance is 0 by default
-        super(name, balance);
-        this.maxWithdrawalLimit = maxWithdrawalLimit;
-        this.rate = rate;
-
-    }
     public void withdraw(double amount) throws Exception {
         try {
             if(amount > getBalance()){
@@ -53,16 +48,16 @@ public class SavingsAccount extends BankAccount{
 
     public double getSimpleInterest(int years){
         // Return the final amount considering that bank gives simple interest on current amount
-        double Interest = (getBalance() * this.rate * years) / 100;
+        double Interest = (getBalance() * this.rate * years) / 100.0;
         setBalance(getBalance() + Interest);
         return getBalance();
     }
 
     public double getCompoundInterest(int times, int years){
         // Return the final amount considering that bank gives compound interest on current amount given times per year
-        double compoundInterest = getBalance()*(1+this.rate/times)*(times*years);
-        setBalance(getBalance() + compoundInterest);
-        return getBalance();
+        double compoundInterest = Math.pow(((100.0+rate/times)/100.0),(times*years)*1.0)*getBalance();
+//        setBalance(getBalance() + compoundInterest);
+        return compoundInterest;
     }
 
 }
